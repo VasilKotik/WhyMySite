@@ -1,7 +1,9 @@
 /* Font Import */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* CSS Variables */
+/* =========================================
+   1. Variables & Base
+   ========================================= */
 :root {
     --bg-primary: #020617; /* Slate 950 */
     --bg-secondary: #0f172a; /* Slate 900 */
@@ -16,11 +18,14 @@
     --glass-border: rgba(51, 65, 85, 0.5);
 }
 
-/* Base Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -31,7 +36,23 @@ body {
     overflow-x: hidden;
 }
 
-/* Enhanced Navbar Styles */
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Text Selection */
+::selection {
+    background: rgba(59, 130, 246, 0.3);
+}
+
+/* =========================================
+   2. Components: Navigation & Buttons
+   ========================================= */
+
+/* Navbar */
 .glass-nav {
     background: var(--glass-bg);
     backdrop-filter: blur(12px);
@@ -45,7 +66,7 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Enhanced Button Styles */
+/* Gradient Button */
 .btn-gradient {
     background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
     position: relative;
@@ -73,27 +94,11 @@ body {
     box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
 }
 
-/* Enhanced Hero Section */
-.hero-gradient {
-    background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-}
+/* =========================================
+   3. Cards & Glassmorphism
+   ========================================= */
 
-.hero-title {
-    animation: fadeInUp 1s ease-out;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Enhanced Glass Card */
+/* Base Glass Card */
 .glass-card {
     background: var(--glass-bg);
     backdrop-filter: blur(12px);
@@ -129,51 +134,7 @@ body {
     border-color: rgba(59, 130, 246, 0.3);
 }
 
-/* Gradient Text */
-.gradient-text {
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-blue));
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradient-shift 3s ease infinite;
-}
-
-@keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Button Styles */
-.btn-gradient {
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.btn-gradient::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
-    transition: left 0.5s ease;
-}
-
-.btn-gradient:hover::before {
-    left: 100%;
-}
-
-.btn-gradient:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
-}
-
-/* Enhanced Service Card Styles */
+/* Service Card (Advanced 3D Effect) */
 .service-card {
     background: var(--glass-bg);
     backdrop-filter: blur(12px);
@@ -201,11 +162,6 @@ body {
 .service-card:hover::before {
     opacity: 1;
     animation: slideGradient 2s linear infinite;
-}
-
-@keyframes slideGradient {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
 }
 
 .service-card:hover {
@@ -239,11 +195,6 @@ body {
     animation: pulse 2s infinite;
 }
 
-@keyframes pulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.05); }
-}
-
 .service-content {
     padding: 1.5rem;
     position: relative;
@@ -272,11 +223,6 @@ body {
     animation: shimmer 3s ease-in-out infinite;
 }
 
-@keyframes shimmer {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
-}
-
 .service-provider {
     color: var(--text-muted);
     font-size: 0.875rem;
@@ -293,11 +239,6 @@ body {
     background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
     border-radius: 50%;
     animation: blink 2s infinite;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
 }
 
 .service-order-btn {
@@ -338,7 +279,10 @@ body {
     transform: translateY(0);
 }
 
-/* Enhanced Modal Styles */
+/* =========================================
+   4. Modals & Forms
+   ========================================= */
+
 .modal {
     animation: fadeIn 0.3s ease;
 }
@@ -351,62 +295,122 @@ body {
     animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -40%) scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
-
-/* Enhanced Form Styles */
-input, textarea {
+/* Forms */
+input, textarea, select {
     transition: all 0.3s ease;
     position: relative;
 }
 
-input:focus, textarea:focus {
+input:focus, textarea:focus, select:focus {
     transform: translateY(-1px);
     box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
     border-color: var(--accent-blue);
+    outline: none;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
 }
 
 input:focus::placeholder, textarea:focus::placeholder {
     opacity: 0.5;
 }
 
-/* Enhanced Radio Button Styles */
+/* Radio Buttons */
 input[type="radio"]:checked + div {
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
     border-color: var(--accent-blue);
     transform: scale(1.02);
 }
 
-/* Enhanced Mobile Menu */
+/* =========================================
+   5. Utilities & Effects
+   ========================================= */
+
+/* Text Gradients */
+.gradient-text, .text-gradient {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-blue));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 3s ease infinite;
+}
+
+/* Border Gradient */
+.border-gradient {
+    position: relative;
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+}
+
+.border-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask-composite: xor;
+}
+
+/* Hero Section Specifics */
+.hero-gradient {
+    background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+}
+
+.hero-title {
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Loading State */
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: loading-shimmer 1.5s infinite;
+}
+
+/* Hover & Glow */
+.hover-lift {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(59, 130, 246, 0.15);
+}
+
+.glow-blue {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    animation: glow-blue 2s ease-in-out infinite alternate;
+}
+
+.glow-purple {
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
+    animation: glow-purple 2s ease-in-out infinite alternate;
+}
+
+/* Mobile Menu */
 #mobileMenu {
     animation: slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(100%);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Enhanced Scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -425,21 +429,54 @@ input[type="radio"]:checked + div {
     background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
 }
 
-/* Enhanced Loading Animation */
-.loading {
-    position: relative;
-    overflow: hidden;
+/* =========================================
+   6. Animations (Keyframes)
+   ========================================= */
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.loading::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    animation: loading-shimmer 1.5s infinite;
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes slideGradient {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes shimmer {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translate(-50%, -40%) scale(0.9); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(100%); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes loading-shimmer {
@@ -447,30 +484,9 @@ input[type="radio"]:checked + div {
     100% { left: 100%; }
 }
 
-/* Enhanced Hover Effects */
-.hover-lift {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(59, 130, 246, 0.15);
-}
-
-/* Enhanced Glow Effects */
-.glow-blue {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-    animation: glow-blue 2s ease-in-out infinite alternate;
-}
-
 @keyframes glow-blue {
     from { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
     to { box-shadow: 0 0 30px rgba(59, 130, 246, 0.8); }
-}
-
-.glow-purple {
-    box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
-    animation: glow-purple 2s ease-in-out infinite alternate;
 }
 
 @keyframes glow-purple {
@@ -478,7 +494,10 @@ input[type="radio"]:checked + div {
     to { box-shadow: 0 0 30px rgba(147, 51, 234, 0.8); }
 }
 
-/* Responsive Design */
+/* =========================================
+   7. Media Queries
+   ========================================= */
+
 @media (max-width: 768px) {
     .glass-card {
         margin: 1rem;
@@ -515,97 +534,4 @@ input[type="radio"]:checked + div {
     .modal-content .glass-card {
         padding: 1.5rem;
     }
-}
-
-/* Utility Classes */
-.text-gradient {
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.loading::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    animation: loading-shimmer 1.5s infinite;
-}
-
-@keyframes loading-shimmer {
-    0% { left: -100%; }
-    100% { left: 100%; }
-}
-
-/* Hover Effects */
-.hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(59, 130, 246, 0.15);
-}
-
-/* Glow Effects */
-.glow-blue {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-}
-
-.glow-purple {
-    box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
-}
-
-/* Text Selection */
-::selection {
-    background: rgba(59, 130, 246, 0.3);
-}
-
-/* Focus States */
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-    outline: 2px solid var(--accent-blue);
-    outline-offset: 2px;
-}
-
-/* Smooth Scrolling */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Container */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-/* Utility Classes */
-.text-gradient {
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.border-gradient {
-    position: relative;
-    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-}
-
-.border-gradient::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    padding: 1px;
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-    border-radius: inherit;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: xor;
-    -webkit-mask-composite: xor;
 }
